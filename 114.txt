@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void dfs(TreeNode* a, TreeNode* b) {
+        if (a -> right == nullptr) a -> right = b;
+        else dfs(a -> right, b);
+    }
+
+    void flatten(TreeNode* root) {
+        if (root == nullptr) return;
+        if (root -> left != nullptr) {
+            if (root -> right != nullptr) dfs(root -> left, root -> right);
+            root -> right = root -> left;
+            root -> left = nullptr;
+        }
+        flatten(root -> right);
+    }
+    // TreeNode* last = nullptr;
+    // void flatten(TreeNode* root) {
+    //     if (root == nullptr) return;
+    //     flatten(root->right);
+    //     flatten(root->left);
+    //     root->right = last;
+    //     root->left = nullptr;
+    //     last = root;
+    // }
+};

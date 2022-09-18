@@ -1,0 +1,55 @@
+// class Solution {
+// public:
+//     bool helper(TreeNode* root, long long lower, long long upper) {
+//         if (root == nullptr) {
+//             return true;
+//         }
+//         if (root -> val <= lower || root -> val >= upper) {
+//             return false;
+//         }
+//         return helper(root -> left, lower, root -> val) && helper(root -> right, root -> val, upper);
+//     }
+//
+//     bool isValidBST(TreeNode* root) {
+//         return helper(root, LONG_MIN, LONG_MAX);
+//     }
+// };
+// 
+// class Solution {
+// public:
+//     bool st = true;
+//     pair<int, int> dfs(TreeNode* now) {
+//         pair<int, int> l, r, re;
+//         if (!st) return re;
+//         int mid;
+//         re.first = re.second = mid = now -> val;
+//         if (now -> left != nullptr) {
+//             l = dfs(now -> left);
+//             if (st) st = l.first < mid;
+//             re.second = min(l.second, re.second);
+//             re.first = max(l.first, re.first);
+//         }
+//         if (now -> right != nullptr) {
+//             r = dfs(now -> right);
+//             if (st) st = mid < r.second;
+//             re.second = min(r.second, re.second);
+//             re.first = max(r.first, re.first);
+//         }
+//         return re;
+//     }
+//     bool isValidBST(TreeNode* root) {
+//         dfs(root);
+//         return st;
+//     }
+// };
+class Solution {
+public:
+    bool dfs(TreeNode* n, long long max, long long min) {
+        if (n == nullptr) return true;
+        if (n -> val >= max || n -> val <= min) return false;
+        return dfs(n -> left, n -> val, min) && dfs(n -> right, max, n -> val);
+    }
+    bool isValidBST(TreeNode* root) {
+        return dfs(root, LONG_MAX, LONG_MIN);
+    }
+};

@@ -1,0 +1,11 @@
+class Solution {
+public:
+    bool dfs(TreeNode* l, TreeNode* r) {
+        if (l == nullptr && r == nullptr) return true;
+        if (l == nullptr || r == nullptr) return false;
+        return l -> val == r -> val && dfs(l -> left, r -> right) && dfs(l -> right, r -> left);
+    }
+    bool isSymmetric(TreeNode* root) {
+        return dfs(root -> left, root -> right);
+    }
+};

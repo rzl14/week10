@@ -1,0 +1,12 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int fir = nums.size() - 2, t;
+        while (fir >= 0 && nums[fir] >= nums[fir + 1]) fir --;
+        sort(nums.begin() + fir + 1, nums.end());
+        if (fir >= 0) {
+            for (t = fir + 1; nums[t] <= nums[fir]; t ++);
+            swap(nums[fir], nums[t]);
+        }
+    }
+};

@@ -1,0 +1,33 @@
+class Solution {
+public:
+
+    int tt, N;
+
+    char a[18];
+
+    vector<string> ss;
+
+    void get(int l, int r)
+    {
+        if (l + r == N) {
+            ss.push_back(a);
+            return;
+        }
+        if (l == r) {
+            a[l + r] = '(';
+            l ++;
+        }
+        if (l + l < N) {
+            a[l + r] = '(';
+            get(l + 1, r);
+        }
+        a[l + r] = ')';
+        get(l, r + 1);
+    }
+
+    vector<string> generateParenthesis(int n) {
+        N = 2 * n;
+        get(0, 0);
+        return ss;
+    }
+};

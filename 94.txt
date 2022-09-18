@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> ans;
+    void dfs(TreeNode* now) {
+        if (now->left != nullptr) dfs(now->left);
+        ans.push_back(now->val);
+        if (now->right != nullptr) dfs(now->right);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        ans.reserve(256);
+        if (root != nullptr) dfs(root);
+        return ans;
+    }
+};
+/*
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& res) {
+        if (!root) {
+            return;
+        }
+        inorder(root->left, res);
+        res.push_back(root->val);
+        inorder(root->right, res);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        inorder(root, res);
+        return res;
+    }
+};
+*/

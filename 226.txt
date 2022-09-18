@@ -1,0 +1,12 @@
+class Solution {
+public:
+    void dfs(TreeNode* &l, TreeNode* &r) {
+        swap(l , r);
+        if (l != nullptr) dfs(l -> left, l -> right);
+        if (r != nullptr) dfs(r -> left, r -> right);
+    }
+    TreeNode* invertTree(TreeNode* root) {
+        if (root != nullptr) dfs(root -> left, root -> right);
+        return root;
+    }
+};

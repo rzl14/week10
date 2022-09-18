@@ -1,0 +1,18 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if (list1 == nullptr || list2 == nullptr) return list1 == nullptr ? list2 : list1;
+        ListNode* head = list1 -> val < list2 -> val ? list1 : list2, *now = head, *bigger = list1 -> val < list2 -> val ? list2 : list1;
+        while (now -> next != nullptr) {
+            t = now -> next;
+            if (t -> val < bigger -> val) now = t;
+            else {
+                now -> next = bigger;
+                now = bigger;
+                bigger = t;
+            }
+        }
+        now -> next = bigger;
+        return head;
+    }
+};

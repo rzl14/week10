@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int n[30005];
+    int longestValidParentheses(string s) {
+        // int left = 0, right = 0, ans = 0;
+        // int i = 0, j = 0;
+        // for (int i = 0; i < s.size(); i ++) {
+        //     while (s[i] == ')') i ++;
+        //     left = 1;
+        //     right = 0;
+        //     for (int j = i + 1; j < s.size(); j ++) {
+        //         if (s[j] == ')') {
+        //             right ++;
+        //             if (left < right) break;
+        //             if (left == right) ans = max(ans, j - i + 1);
+        //         }
+        //         else left ++;
+        //     }
+        // }
+        // return ans;
+        if (s[0] == '(' && s[1] == ')') n[1] = 2;
+        for (int i = 2; i < s.size(); i ++) {
+            if (s[i] == '(') continue;
+            if (s[i - 1] == '(') n[i] = n[i - 2] + 2;
+            else if (i - n[i - 1] - 1 >= 0 && s[i - n[i - 1] - 1] == '(') {
+                n[i] = n[i - 1] + 2;
+                if (i - n[i - 1] - 2 >= 0) n[i] += n[i - n[i - 1] - 2];
+            }
+        }
+        int ans = 0;
+        for (int i = 1; i < s.size(); i ++) ans = ans < n[i] ? n[i] : ans;
+        return ans;
+    }
+};

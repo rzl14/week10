@@ -1,0 +1,24 @@
+class Solution {
+public:
+    char d[8][4] = {{'a', 'b','c'},{'d','e','f'},{'g','h','i'},{'j','k','l'},{'m','n','o'},{'p','q','r','s'},{'t','u','v'},{'w','x','y','z'}};
+    char s[5];
+    vector<string> a;
+
+    void dfs(string digits, int n) {
+        if (n == digits.size()) {
+            a.push_back(s);
+            return;
+        }
+        char* x = d[digits[n] - '2'];
+        for (int j = 0; j < 4; j ++) {
+            if (!*(x + j)) continue;
+            s[n] = *(x + j);
+            dfs(digits, n + 1);
+        }
+    }
+
+    vector<string> letterCombinations(string digits) {
+        if (digits.size() > 0) dfs(digits, 0);
+        return a;
+    }
+};

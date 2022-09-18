@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        // map<ListNode*, int> my_map;
+        // ListNode* i = headA;ListNode *j = headB;
+        // for (; i != NULL && j != NULL; i = i -> next, j = j -> next) {
+        //     if (my_map.count(i)) return i;
+        //     my_map[i] = i -> val;
+        //     if (my_map.count(j)) return j;
+        //     my_map[j] = j -> val;
+        // }
+        // if (j == NULL) j = i;
+        // for (;j != NULL; j = j -> next) if (my_map.count(j)) return j;
+        // return NULL;
+
+
+        // if (headB == NULL || headA == NULL) return NULL;
+        // ListNode* i = headA, *j = headB;
+        // while (i != j) {
+        //     i = i == NULL? headB : i -> next;
+        //     j = j == NULL? headA : j -> next;
+        // }
+        // return i;
+    }
+};

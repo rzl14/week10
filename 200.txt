@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int m, n;
+    int x[4] = {-1, 1, 0, 0}, y[4] = {0, 0, -1, 1};
+    void dfs(int xm, int yn, vector<vector<char>>& grid) {
+        for (int i = 0; i < 4; i ++) {
+            if (xm + x[i] >= 0 && xm + x[i] < m && yn + y[i] >= 0 && yn + y[i] < n && grid[xm + x[i]][yn + y[i]] == '1'){
+                grid[xm + x[i]][yn + y[i]] = '0';
+                dfs(xm + x[i], yn + y[i], grid);
+            }
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int ans = 0;
+        m = grid.size();
+        if (m > 0) n = grid[0].size();
+        int i = 0, j = 0;
+        while (i != m) {
+            while (grid[i][j] != '1') {
+                j ++;
+                if (j == n) {
+                    i ++;
+                    j = 0;
+                    if (i == m) break;
+                }
+            }
+            if (i == m) break;
+            ans += 1;
+            grid[i][j] = '0';
+            dfs(i, j, grid);
+        }
+        return ans;
+    }
+};
